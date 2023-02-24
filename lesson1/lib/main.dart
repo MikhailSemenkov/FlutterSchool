@@ -32,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _profileCounter = 0;
 
   final List<Profile> _profiles = [];
 
@@ -43,16 +43,16 @@ class _MyHomePageState extends State<MyHomePage> {
     _profiles.add(Profile());
     _profiles.add(Profile(
         firstName: 'David', lastName: 'Bowie', age: 34, location: 'London'));
-    _profiles.add(Profile(firstName: 'Mykhailo'));
+    _profiles.add(Profile(firstName: 'Mykhail'));
 
-    _currentProfile = _profiles[_counter].toList();
+    _currentProfile = _profiles[_profileCounter].toList();
   }
 
-  void _incrementCounter() {
+  void _incrementProfileCounter() {
     setState(() {
-      _counter = ++_counter % _profiles.length;
+      _profileCounter = ++_profileCounter % _profiles.length;
 
-      _currentProfile = _profiles[_counter].toList();
+      _currentProfile = _profiles[_profileCounter].toList();
     });
   }
 
@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: _incrementProfileCounter,
         tooltip: 'Next profile',
         child: const Icon(Icons.navigate_next),
       ),

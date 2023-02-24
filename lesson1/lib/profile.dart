@@ -5,13 +5,13 @@ class Profile {
 
   int _age;
 
-  String? _location;
+  String _location;
 
   Profile({firstName = 'Mikhail', lastName = 'Semenkov', age = 19, location})
       : _firstName = firstName,
         _lastName = lastName,
         _age = age,
-        _location = location;
+        _location = location ?? "";
 
   String get firstName => _firstName;
 
@@ -33,7 +33,7 @@ class Profile {
 
   String? get location => _location;
 
-  set location(String? value) => _location = value;
+  set location(String? value) => _location = value ?? "";
 
   @override
   String toString() {
