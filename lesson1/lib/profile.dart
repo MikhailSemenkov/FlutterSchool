@@ -3,15 +3,16 @@ class Profile {
 
   String _lastName;
 
-  int _age;
+  late int _age;
 
   String _location;
 
   Profile({firstName = 'Mikhail', lastName = 'Semenkov', age = 19, location})
       : _firstName = firstName,
         _lastName = lastName,
-        _age = age,
-        _location = location ?? "";
+        _location = location ?? "" {
+    this.age = age;
+  }
 
   String get firstName => _firstName;
 

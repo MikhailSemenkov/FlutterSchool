@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter School First Lesson'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -38,7 +39,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<String> _currentProfile = [];
 
-  _MyHomePageState() {
+  @override
+  void initState() {
+    super.initState();
     _profiles.add(Profile(location: 'Kyiv'));
     _profiles.add(Profile());
     _profiles.add(Profile(
