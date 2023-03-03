@@ -8,4 +8,12 @@ class Snake extends Pet with PetColor {
 
   @override
   String toString() => '${super.toString()}, Color: $color';
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      super == other && other is Snake && color == other.color;
+
+  @override
+  int get hashCode => super.hashCode ^ color.hashCode;
 }

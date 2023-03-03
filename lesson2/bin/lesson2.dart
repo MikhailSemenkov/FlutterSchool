@@ -25,8 +25,9 @@ void main(List<String> arguments) {
 
   Pet dog2 = Pet.dog('Dog 2', 5);
   Pet dog3 = Pet.dog('Dog 3', 1);
-  var setOfPets = <Pet>{dog2, ...listOfPets, dog3};
-  assert(setOfPets.length == 6);
+  Snake snake2 = Snake('Snake', 5, Color.yellow);
+  var setOfPets = <Pet>{dog2, ...listOfPets, dog3, snake2};
+  assert(setOfPets.length == 7);
 
   var humanYearsOfDog = dog.makeHumanYearsOfPet(7);
   assert(humanYearsOfDog() == 63);
