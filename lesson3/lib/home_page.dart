@@ -3,23 +3,65 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class HomePage {
-  Widget getWidget() {
-    return ListView(
+  List<Widget> getWidget() {
+    return <Widget>[
+      _topBar(),
+      _contentChooseBar(),
+      _verticalListViewItem('Made for you', generateItems(5)),
+      _verticalListViewItem('Recently played', generateItems(5)),
+      _verticalListViewItem('Your top mixes', generateItems(5)),
+    ];
+  }
+
+  Widget _topBar() {
+    return const Row(
       children: [
-        Container(
-          margin: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              _topBar(),
-              _contentChooseBar(),
-              _verticalListViewItem('Made for you', generateItems(5)),
-              _verticalListViewItem('Recently played', generateItems(5)),
-              _verticalListViewItem('Your top mixes', generateItems(5)),
-            ],
-          ),
+        Text(
+          'Good evening',
+          style: TextStyle(fontSize: 25),
         ),
+        Expanded(child: SizedBox()),
+        IconButton(
+          onPressed: null,
+          icon: Icon(Icons.notifications_none_outlined, size: 30),
+        ),
+        IconButton(
+          onPressed: null,
+          icon: Icon(Icons.history, size: 30),
+        ),
+        IconButton(
+          onPressed: null,
+          icon: Icon(Icons.settings_outlined, size: 30),
+        )
       ],
+    );
+  }
+
+  Widget _contentChooseBar() {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: Row(
+        children: [
+          _makeFilledButton('Music'),
+          const SizedBox(
+            width: 20,
+          ),
+          _makeFilledButton('Podcasts & Shows'),
+        ],
+      ),
+    );
+  }
+
+  Widget _makeFilledButton(String title) {
+    return FilledButton(
+      style: FilledButton.styleFrom(
+        backgroundColor: Colors.grey,
+      ),
+      onPressed: null,
+      child: Text(
+        title,
+        style: const TextStyle(color: Colors.white, fontSize: 12),
+      ),
     );
   }
 
@@ -31,61 +73,6 @@ class HomePage {
           randomColor(), 'It is playlist special for you'));
     }
     return items;
-  }
-
-  Widget _topBar() {
-    return const Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          'Good evening',
-          style: TextStyle(fontSize: 25),
-        ),
-        Row(
-          children: [
-            IconButton(
-                onPressed: null,
-                icon: Icon(Icons.notifications_none_outlined, size: 30)),
-            IconButton(onPressed: null, icon: Icon(Icons.history, size: 30)),
-            IconButton(
-                onPressed: null, icon: Icon(Icons.settings_outlined, size: 30)),
-          ],
-        )
-      ],
-    );
-  }
-
-  Widget _contentChooseBar() {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      child: Row(
-        children: [
-          FilledButton(
-            style: FilledButton.styleFrom(
-              backgroundColor: Colors.grey,
-            ),
-            onPressed: null,
-            child: const Text(
-              'Music',
-              style: TextStyle(color: Colors.white, fontSize: 12),
-            ),
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-          FilledButton(
-            style: FilledButton.styleFrom(
-              backgroundColor: Colors.grey,
-            ),
-            onPressed: null,
-            child: const Text(
-              'Podcasts & Shows',
-              style: TextStyle(color: Colors.white, fontSize: 12),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 
   Widget _horizontalListViewItem(Color coverColor, String title) {

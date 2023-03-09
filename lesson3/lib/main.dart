@@ -61,11 +61,21 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: _getPage(_pageCounter),
+      body: ListView(
+        children: [
+          Container(
+            margin: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: _getPage(_pageCounter),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget _getPage(int pageCounter) {
+  List<Widget> _getPage(int pageCounter) {
     switch (pageCounter) {
       case 0:
         {
@@ -118,19 +128,13 @@ class _MyHomePageState extends State<MyHomePage> {
       children: [
         Row(
           children: [
-            const Icon(
-              Icons.image,
-              size: 50,
-            ),
+            const Icon(Icons.image, size: 50),
             const SizedBox(width: 10),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(compositionName),
-                Text(
-                  author,
-                  style: const TextStyle(fontSize: 12),
-                ),
+                Text(author, style: const TextStyle(fontSize: 12)),
               ],
             ),
             const Expanded(child: SizedBox()),
