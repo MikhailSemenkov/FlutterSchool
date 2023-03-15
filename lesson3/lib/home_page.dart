@@ -2,18 +2,43 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class HomePage {
-  List<Widget> getWidget() {
-    return <Widget>[
-      _topBar(),
-      _contentChooseBar(),
-      _verticalListViewItem('Made for you', generateItems(5)),
-      _verticalListViewItem('Recently played', generateItems(5)),
-      _verticalListViewItem('Your top mixes', generateItems(5)),
-    ];
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        const TopBar(),
+        const ContentChooseBar(),
+        VerticalListViewItem(title: 'Made for you', items: generateItems(5)),
+        VerticalListViewItem(title: 'Recently played', items: generateItems(5)),
+        VerticalListViewItem(title: 'Your top mixes', items: generateItems(5)),
+      ],
+    );
   }
 
-  Widget _topBar() {
+  static List<Widget> generateItems(int amountOfItems) {
+    randomColor() => Color(Random().nextInt(0xffffffff));
+    return <Widget>[
+      for (int i = 0; i < amountOfItems; i++)
+        HorizontalListViewItem(
+          coverColor: randomColor(),
+          title: 'It is playlist special for you',
+        ),
+    ];
+    // return items;
+  }
+}
+
+class TopBar extends StatelessWidget {
+  const TopBar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return const Row(
       children: [
         Text(
@@ -36,23 +61,40 @@ class HomePage {
       ],
     );
   }
+}
 
-  Widget _contentChooseBar() {
+class ContentChooseBar extends StatelessWidget {
+  const ContentChooseBar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
-      child: Row(
+      child: const Row(
         children: [
-          _makeFilledButton('Music'),
-          const SizedBox(
+          MyFilledButton(title: 'Music'),
+          SizedBox(
             width: 20,
           ),
-          _makeFilledButton('Podcasts & Shows'),
+          MyFilledButton(title: 'Podcasts & Shows'),
         ],
       ),
     );
   }
+}
 
-  Widget _makeFilledButton(String title) {
+class MyFilledButton extends StatelessWidget {
+  const MyFilledButton({
+    super.key,
+    required this.title,
+  });
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
     return FilledButton(
       style: FilledButton.styleFrom(
         backgroundColor: Colors.grey,
@@ -64,36 +106,20 @@ class HomePage {
       ),
     );
   }
+}
 
-  List<Widget> generateItems(int amountOfItems) {
-    randomColor() => Color(Random().nextInt(0xffffffff));
-    List<Widget> items = [];
-    for (int i = 0; i < amountOfItems; i++) {
-      items.add(_horizontalListViewItem(
-          randomColor(), 'It is playlist special for you'));
-    }
-    return items;
-  }
+class VerticalListViewItem extends StatelessWidget {
+  const VerticalListViewItem({
+    super.key,
+    required this.title,
+    required this.items,
+  });
 
-  Widget _horizontalListViewItem(Color coverColor, String title) {
-    return Container(
-      width: 150,
-      margin: const EdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            width: 150,
-            height: 150,
-            color: coverColor,
-          ),
-          Text(title, style: const TextStyle(fontSize: 12)),
-        ],
-      ),
-    );
-  }
+  final String title;
+  final List<Widget> items;
 
-  Widget _verticalListViewItem(String title, List<Widget> items) {
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -108,6 +134,36 @@ class HomePage {
           ),
         ),
       ],
+    );
+  }
+}
+
+class HorizontalListViewItem extends StatelessWidget {
+  const HorizontalListViewItem({
+    super.key,
+    required this.coverColor,
+    required this.title,
+  });
+
+  final Color coverColor;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 150,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: 150,
+            height: 150,
+            color: coverColor,
+          ),
+          Text(title, style: const TextStyle(fontSize: 12)),
+        ],
+      ),
     );
   }
 }

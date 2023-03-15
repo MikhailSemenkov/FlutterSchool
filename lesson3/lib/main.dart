@@ -36,18 +36,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _pageCounter = 0;
 
-  late HomePage homePage;
-  late SearchPage searchPage;
-  late LibraryPage libraryPage;
-
-  @override
-  void initState() {
-    super.initState();
-    homePage = HomePage();
-    searchPage = SearchPage();
-    libraryPage = LibraryPage();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,8 +44,37 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            _nowPlayingComposition('David Bowie', 'Heroes'),
-            _myNavigationBar(),
+            const NowPlayingCompositionWidget(
+              author: 'David Bowie',
+              compositionName: 'Heroes',
+            ),
+            NavigationBar(
+              backgroundColor: Colors.black,
+              indicatorColor: Colors.transparent,
+              onDestinationSelected: (int index) {
+                setState(() {
+                  _pageCounter = index;
+                });
+              },
+              selectedIndex: _pageCounter,
+              destinations: const <Widget>[
+                NavigationItemWidget(
+                  selectedIcon: Icons.home,
+                  icon: Icons.home_outlined,
+                  label: 'Home',
+                ),
+                NavigationItemWidget(
+                  selectedIcon: Icons.saved_search_rounded,
+                  icon: Icons.search,
+                  label: 'Search',
+                ),
+                NavigationItemWidget(
+                  selectedIcon: Icons.bookmark,
+                  icon: Icons.bookmark_border,
+                  label: 'Your Library',
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -65,65 +82,55 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Container(
             margin: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: _getPage(_pageCounter),
-            ),
+            child: GetPage(pageCounter: _pageCounter),
           ),
         ],
       ),
     );
   }
+}
 
-  List<Widget> _getPage(int pageCounter) {
+class GetPage extends StatelessWidget {
+  const GetPage({
+    super.key,
+    required this.pageCounter,
+  });
+
+  final int pageCounter;
+
+  @override
+  Widget build(BuildContext context) {
     switch (pageCounter) {
       case 0:
         {
-          return homePage.getWidget();
+          return const HomePage();
         }
       case 1:
         {
-          return searchPage.getWidget();
+          return const SearchPage();
         }
       case 2:
         {
-          return libraryPage.getWidget();
+          return const LibraryPage();
         }
       default:
         throw 'Incorrect page number';
     }
   }
+}
 
-  Widget _myNavigationBar() {
-    return NavigationBar(
-      backgroundColor: Colors.black,
-      indicatorColor: Colors.transparent,
-      onDestinationSelected: (int index) {
-        setState(() {
-          _pageCounter = index;
-        });
-      },
-      selectedIndex: _pageCounter,
-      destinations: <Widget>[
-        _myNavigationDestination(Icons.home, Icons.home_outlined, 'Home'),
-        _myNavigationDestination(
-            Icons.saved_search_rounded, Icons.search, 'Search'),
-        _myNavigationDestination(
-            Icons.bookmark, Icons.bookmark_border, 'Your Library'),
-      ],
-    );
-  }
+class NowPlayingCompositionWidget extends StatelessWidget {
+  const NowPlayingCompositionWidget({
+    Key? key,
+    required this.author,
+    required this.compositionName,
+  }) : super(key: key);
 
-  Widget _myNavigationDestination(
-      IconData selectedIcon, IconData icon, String label) {
-    return NavigationDestination(
-      selectedIcon: Icon(selectedIcon, color: Colors.white),
-      icon: Icon(icon, color: Colors.grey),
-      label: label,
-    );
-  }
+  final String author;
+  final String compositionName;
 
-  Widget _nowPlayingComposition(String author, String compositionName) {
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         Row(
@@ -149,6 +156,28 @@ class _MyHomePageState extends State<MyHomePage> {
           color: Colors.white,
         )
       ],
+    );
+  }
+}
+
+class NavigationItemWidget extends StatelessWidget {
+  const NavigationItemWidget({
+    super.key,
+    required this.selectedIcon,
+    required this.icon,
+    required this.label,
+  });
+
+  final IconData selectedIcon;
+  final IconData icon;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return NavigationDestination(
+      selectedIcon: Icon(selectedIcon, color: Colors.white),
+      icon: Icon(icon, color: Colors.grey),
+      label: label,
     );
   }
 }

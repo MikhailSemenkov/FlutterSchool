@@ -1,18 +1,40 @@
 import 'package:flutter/material.dart';
 
-class LibraryPage {
-  List<Widget> getWidget() {
-    return <Widget>[
-      _topBar(),
-      _contentChooseBar(),
-      _orderBar(),
-      _listViewItem('Liked Songs', 'playlist - 234 songs'),
-      _listViewItem('New Episodes', 'Updated Mar 6, 2023'),
-      _listViewItem('Top of the top songs', 'playlist - Spotify'),
-    ];
-  }
+class LibraryPage extends StatelessWidget {
+  const LibraryPage({super.key});
 
-  Widget _topBar() {
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        TopBar(),
+        ContentChooseBar(),
+        OrderBar(),
+        ListViewItem(
+          title: 'Liked Songs',
+          description: 'playlist - 234 songs',
+        ),
+        ListViewItem(
+          title: 'New Episodes',
+          description: 'Updated Mar 6, 2023',
+        ),
+        ListViewItem(
+          title: 'Top of the top songs',
+          description: 'playlist - Spotify',
+        ),
+      ],
+    );
+  }
+}
+
+class TopBar extends StatelessWidget {
+  const TopBar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       children: [
         Stack(
@@ -44,23 +66,40 @@ class LibraryPage {
       ],
     );
   }
+}
 
-  Widget _contentChooseBar() {
+class ContentChooseBar extends StatelessWidget {
+  const ContentChooseBar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
-      child: Row(
+      child: const Row(
         children: [
-          _makeOutlinedButton('Playlist'),
-          const SizedBox(width: 10),
-          _makeOutlinedButton('Podcasts & Shows'),
-          const SizedBox(width: 10),
-          _makeOutlinedButton('Albums'),
+          MyOutlinedButton(title: 'Playlist'),
+          SizedBox(width: 10),
+          MyOutlinedButton(title: 'Podcasts & Shows'),
+          SizedBox(width: 10),
+          MyOutlinedButton(title: 'Albums'),
         ],
       ),
     );
   }
+}
 
-  Widget _makeOutlinedButton(String title) {
+class MyOutlinedButton extends StatelessWidget {
+  const MyOutlinedButton({
+    super.key,
+    required this.title,
+  });
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         side: const BorderSide(color: Colors.grey),
@@ -72,8 +111,15 @@ class LibraryPage {
       ),
     );
   }
+}
 
-  Widget _orderBar() {
+class OrderBar extends StatelessWidget {
+  const OrderBar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       children: [
         TextButton(
@@ -93,8 +139,20 @@ class LibraryPage {
       ],
     );
   }
+}
 
-  Widget _listViewItem(String title, String description) {
+class ListViewItem extends StatelessWidget {
+  const ListViewItem({
+    super.key,
+    required this.title,
+    required this.description,
+  });
+
+  final String title;
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
     return ListTile(
       onTap: null,
       title: Text(title,
