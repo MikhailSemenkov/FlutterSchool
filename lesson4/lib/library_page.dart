@@ -5,23 +5,30 @@ class LibraryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        TopBar(),
-        ContentChooseBar(),
-        OrderBar(),
-        ListViewItem(
-          title: 'Liked Songs',
-          description: 'playlist - 234 songs',
-        ),
-        ListViewItem(
-          title: 'New Episodes',
-          description: 'Updated Mar 6, 2023',
-        ),
-        ListViewItem(
-          title: 'Top of the top songs',
-          description: 'playlist - Spotify',
+    return ListView(
+      children: [
+        Container(
+          margin: const EdgeInsets.all(20),
+          child: const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              TopBar(),
+              ContentChooseBar(),
+              OrderBar(),
+              ListViewItem(
+                title: 'Liked Songs',
+                description: 'playlist - 234 songs',
+              ),
+              ListViewItem(
+                title: 'New Episodes',
+                description: 'Updated Mar 6, 2023',
+              ),
+              ListViewItem(
+                title: 'Top of the top songs',
+                description: 'playlist - Spotify',
+              ),
+            ],
+          ),
         ),
       ],
     );

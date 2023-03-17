@@ -7,14 +7,24 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const TopBar(),
-        const ContentChooseBar(),
-        VerticalListViewItem(title: 'Made for you', items: generateItems(5)),
-        VerticalListViewItem(title: 'Recently played', items: generateItems(5)),
-        VerticalListViewItem(title: 'Your top mixes', items: generateItems(5)),
+    return ListView(
+      children: [
+        Container(
+          margin: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const TopBar(),
+              const ContentChooseBar(),
+              VerticalListViewItem(
+                  title: 'Made for you', items: generateItems(5)),
+              VerticalListViewItem(
+                  title: 'Recently played', items: generateItems(5)),
+              VerticalListViewItem(
+                  title: 'Your top mixes', items: generateItems(5)),
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -39,25 +49,30 @@ class TopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
-        Text(
+        const Text(
           'Good evening',
           style: TextStyle(fontSize: 25),
         ),
-        Expanded(child: SizedBox()),
+        const Expanded(child: SizedBox()),
         IconButton(
-          onPressed: null,
-          icon: Icon(Icons.notifications_none_outlined, size: 30),
+          onPressed: () {},
+          icon: const Icon(Icons.notifications_none_outlined, size: 30),
         ),
         IconButton(
-          onPressed: null,
-          icon: Icon(Icons.history, size: 30),
+          onPressed: () {},
+          icon: const Icon(Icons.history, size: 30),
         ),
-        IconButton(
-          onPressed: null,
-          icon: Icon(Icons.settings_outlined, size: 30),
-        )
+        Builder(builder: (context) {
+          return IconButton(
+            onPressed: () => Scaffold.of(context).openEndDrawer(),
+            icon: const Icon(
+              Icons.settings_outlined,
+              size: 30,
+            ),
+          );
+        }),
       ],
     );
   }
