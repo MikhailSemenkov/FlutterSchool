@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     debugPaintSizeEnabled = debugPaintBaselinesEnabled = false;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Lesson 3',
+      title: 'Lesson 4',
       theme: ThemeData(
         colorScheme: const ColorScheme.dark(),
         useMaterial3: true,
