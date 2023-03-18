@@ -181,11 +181,14 @@ class _SettingsMenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: const ButtonStyle(
-          overlayColor: MaterialStatePropertyAll(Colors.transparent),
-          padding: MaterialStatePropertyAll(EdgeInsets.symmetric(
+        overlayColor: MaterialStatePropertyAll(Colors.transparent),
+        padding: MaterialStatePropertyAll(
+          EdgeInsets.symmetric(
             vertical: 10,
             horizontal: 0,
-          ))),
+          ),
+        ),
+      ),
       onPressed: () {},
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
