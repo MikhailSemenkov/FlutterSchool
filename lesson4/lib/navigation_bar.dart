@@ -100,34 +100,29 @@ class NowPlayingCompositionWidget extends StatelessWidget {
                         children: [
                           Hero(
                             tag: 'CompositionName',
-                            child: FittedBox(
-                              child: Text(
-                                compositionName,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.none,
-                                  fontFamily: 'Roboto',
-                                  height: 1.5,
-                                  letterSpacing: 0.5,
+                            child: Material(
+                              type: MaterialType.transparency,
+                              child: FittedBox(
+                                child: Text(
+                                  compositionName,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                           Hero(
                             tag: 'CompositionAuthor',
-                            child: FittedBox(
-                              child: Text(
-                                author,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                  fontFamily: 'Roboto',
-                                  height: 1.5,
-                                  letterSpacing: 0.5,
+                            child: Material(
+                              type: MaterialType.transparency,
+                              child: FittedBox(
+                                child: Text(
+                                  author,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey,
+                                  ),
                                 ),
                               ),
                             ),
