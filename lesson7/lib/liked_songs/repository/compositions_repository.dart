@@ -45,10 +45,8 @@ class CompositionsRepository {
 
     log(response.statusCode.toString());
     if (response.statusCode == 200) {
-      log('fetched');
       return Composition.fromJson(jsonDecode(response.body));
     } else {
-      log('not fetched');
       throw Exception('Failed to load composition');
     }
   }

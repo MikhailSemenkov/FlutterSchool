@@ -16,7 +16,7 @@ class SearchScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text('Search', style: Theme.of(context).textTheme.headlineMedium),
-              const SearchBar(),
+              const MySearchBar(),
               Text('Browse all', style: Theme.of(context).textTheme.titleLarge),
               const ListViewRow(
                 firstItemColor: Colors.deepOrangeAccent,
