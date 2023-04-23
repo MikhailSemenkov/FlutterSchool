@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lesson9/player_page/widgets/favorite_button_widget.dart';
 
 import '../../hero_animation/widgets/hero_text_widget.dart';
 
@@ -15,11 +16,13 @@ class AboutCompositionBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 90,
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Row(
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               HeroText(
                 tag: 'CompositionName',
@@ -34,10 +37,7 @@ class AboutCompositionBar extends StatelessWidget {
             ],
           ),
           const Expanded(child: SizedBox()),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.favorite_border),
-          ),
+          const FavoriteButton(),
         ],
       ),
     );

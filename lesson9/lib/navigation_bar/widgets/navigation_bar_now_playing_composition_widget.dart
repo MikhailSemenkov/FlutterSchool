@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lesson9/player_page/widgets/favorite_button_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../hero_animation/widgets/hero_composition_cover_widget.dart';
@@ -27,7 +28,6 @@ class NowPlayingComposition extends StatelessWidget {
   Widget build(BuildContext context) {
     final updatablePlayerModel =
         Provider.of<PlayerModel>(context, listen: true);
-
     return Column(
       children: [
         Row(
@@ -74,8 +74,9 @@ class NowPlayingComposition extends StatelessWidget {
               ),
             ),
             const IconButton(onPressed: null, icon: Icon(Icons.speaker)),
-            const IconButton(
-                onPressed: null, icon: Icon(Icons.favorite_border)),
+            // const IconButton(
+            //     onPressed: null, icon: Icon(Icons.favorite_border)),
+            const FavoriteButton(),
             IconButton(
               onPressed: () {
                 updatablePlayerModel.playPressed();

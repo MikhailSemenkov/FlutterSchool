@@ -3,8 +3,8 @@ import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:lesson9/authorization/repository/tokens_repository.dart';
 
+import '../../authorization/repository/tokens_repository.dart';
 import '../data/playlist.dart';
 
 class LibraryRepository {

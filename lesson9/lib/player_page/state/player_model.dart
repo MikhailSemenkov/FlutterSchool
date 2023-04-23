@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class PlayerModel extends ChangeNotifier {
   bool _isPlaying = false;
+  bool _isFavorite = false;
   double _passedTime = 0;
   Timer? _timer;
 
@@ -36,6 +37,13 @@ class PlayerModel extends ChangeNotifier {
     notifyListeners();
     _timer = _timerInit();
   }
+
+  void favoritePressed() {
+    _isFavorite = !_isFavorite;
+    notifyListeners();
+  }
+
+  bool get isFavorite => _isFavorite;
 
   bool get isPlaying => _isPlaying;
 
