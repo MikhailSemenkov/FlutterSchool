@@ -1,11 +1,10 @@
-# lesson8
+# lesson9
 
-Routing and transition management.
+Animations.
 
 ## Task
 
-- Switch to the widget by class name;
-- Switching to the widget by "named navigation";
-- Passing parameters to the widget to be opened (through the constructor);
-- Returning parameters back when exiting the widget;
-- Nested navigation. A possible option is to use the BottomNavigationBar.
+- Implement the animation;
+- Demonstrate the use of Animation, AnimationController, Tween;
+- In the created animation, implement a color change or other transformation of a certain parameter;
+- The animation should realize a certain movement, a change of position. This movement can be looped.
